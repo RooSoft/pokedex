@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :pokedex, Pokedex.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "roo",
+  password: "roo",
   hostname: "localhost",
   database: "pokedex_dev",
   stacktrace: true,
