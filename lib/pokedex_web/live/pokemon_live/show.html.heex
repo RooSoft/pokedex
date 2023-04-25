@@ -1,18 +1,10 @@
 <.header>
-  Pokemon <%= @pokemon.id %>
-  <:subtitle>This is a pokemon record from your database.</:subtitle>
-  <:actions>
-    <.link patch={~p"/pokemons/#{@pokemon}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit pokemon</.button>
-    </.link>
-  </:actions>
+  <%= @pokemon.pokedex_id %> - <%= @pokemon.name %>
 </.header>
 
 <.list>
-  <:item title="Name"><%= @pokemon.name %></:item>
-  <:item title="Pokedex"><%= @pokemon.pokedex_id %></:item>
   <:item title="">
-    <img src={"https://www.pokebip.com/pokedex-images/ecarlate-violet/300/#{@pokemon.pokedex_id}.png"} />
+    <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/#{@pokemon.pokedex_id}.svg"} />
   </:item>
 </.list>
 
