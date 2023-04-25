@@ -14,7 +14,7 @@ defmodule Pokedex.CatalogFixtures do
         name: "some name",
         pokedex_id: 42
       })
-      |> Pokedex.Catalog.create_pokemon()
+      |> Pokedex.Catalog.upsert_pokemon()
 
     pokemon
   end

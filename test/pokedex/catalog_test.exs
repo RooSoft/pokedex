@@ -20,16 +20,16 @@ defmodule Pokedex.CatalogTest do
       assert Catalog.get_pokemon!(pokemon.id) == pokemon
     end
 
-    test "create_pokemon/1 with valid data creates a pokemon" do
+    test "upsert_pokemon/1 with valid data creates a pokemon" do
       valid_attrs = %{name: "some name", pokedex_id: 42}
 
-      assert {:ok, %Pokemon{} = pokemon} = Catalog.create_pokemon(valid_attrs)
+      assert {:ok, %Pokemon{} = pokemon} = Catalog.upsert_pokemon(valid_attrs)
       assert pokemon.name == "some name"
       assert pokemon.pokedex_id == 42
     end
 
-    test "create_pokemon/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Catalog.create_pokemon(@invalid_attrs)
+    test "upsert_pokemon/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Catalog.upsert_pokemon(@invalid_attrs)
     end
 
     test "update_pokemon/2 with valid data updates the pokemon" do
