@@ -1,12 +1,10 @@
 defmodule Pokedex.Importer.Pokemons do
-  def get(region_id) do
-    Req.get!("https://pokeapi.co/api/v2/pokedex/#{region_id}").body["pokemon_entries"]
+  def get() do
+    Req.get!("https://pokeapi.co/api/v2/pokemon-species?limit=2000").body["results"]
     |> Enum.map(fn
       %{
-        "pokemon_species" => %{
-          "name" => name,
-          "url" => url
-        }
+        "name" => name,
+        "url" => url
       } ->
         pokedex_id =
           url
