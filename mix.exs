@@ -33,6 +33,7 @@ defmodule Pokedex.MixProject do
   defp deps do
     [
       {:dialyxir, "~> 1.3", only: [:dev], runtime: false},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:phoenix, "~> 1.7.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
