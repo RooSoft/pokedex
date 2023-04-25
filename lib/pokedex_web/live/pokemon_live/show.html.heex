@@ -11,6 +11,9 @@
 <.list>
   <:item title="Name"><%= @pokemon.name %></:item>
   <:item title="Pokedex"><%= @pokemon.pokedex_id %></:item>
+  <:item title="">
+    <img src={"https://www.pokebip.com/pokedex-images/ecarlate-violet/300/#{@pokemon.pokedex_id}.png"} />
+  </:item>
 </.list>
 
 <.back navigate={~p"/pokemons"}>Back to pokemons</.back>
