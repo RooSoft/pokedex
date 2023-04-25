@@ -20,6 +20,7 @@ defmodule Pokedex.Importer.Pokemons do
     |> Enum.map(fn %{"name" => name, "language" => %{"name" => language_name}} -> 
       {language_name, name}
     end)
+    |> Enum.into(%{})
   end
 
   def upsert(pokemons) do
