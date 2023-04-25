@@ -1,10 +1,5 @@
 <.header>
-  Listing Pokemons
-  <:actions>
-    <.link patch={~p"/pokemons/new"}>
-      <.button>New Pokemon</.button>
-    </.link>
-  </:actions>
+  Pokemons
 </.header>
 
 <.table
@@ -16,13 +11,3 @@
   <:col :let={{_id, pokemon}} label="Name"><%= pokemon.name %></:col>
 </.table>
 
-<.modal :if={@live_action in [:new, :edit]} id="pokemon-modal" show on_cancel={JS.patch(~p"/pokemons")}>
-  <.live_component
-    module={PokedexWeb.PokemonLive.FormComponent}
-    id={@pokemon.id || :new}
-    title={@page_title}
-    action={@live_action}
-    pokemon={@pokemon}
-    patch={~p"/pokemons"}
-  />
-</.modal>
