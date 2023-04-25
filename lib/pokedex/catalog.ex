@@ -37,23 +37,23 @@ defmodule Pokedex.Catalog do
   """
   def get_pokemon!(id), do: Repo.get!(Pokemon, id)
 
-  @doc """
-  Creates a pokemon.
+  # @doc """
+  # Creates a pokemon.
 
-  ## Examples
+  # ## Examples
 
-      iex> create_pokemon(%{field: value})
-      {:ok, %Pokemon{}}
+  #     iex> create_pokemon(%{field: value})
+  #     {:ok, %Pokemon{}}
 
-      iex> create_pokemon(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+  #     iex> create_pokemon(%{field: bad_value})
+  #     {:error, %Ecto.Changeset{}}
 
-  """
-  def create_pokemon(attrs \\ %{}) do
-    %Pokemon{}
-    |> Pokemon.changeset(attrs)
-    |> Repo.insert()
-  end
+  # """
+  # def create_pokemon(attrs \\ %{}) do
+  #   %Pokemon{}
+  #   |> Pokemon.changeset(attrs)
+  #   |> Repo.insert()
+  # end
 
   @doc """
   Updates a pokemon.
@@ -71,6 +71,15 @@ defmodule Pokedex.Catalog do
     pokemon
     |> Pokemon.changeset(attrs)
     |> Repo.update()
+  end
+
+  @doc """
+  Creates or updates a pokemon.
+  """
+  def upsert_pokemon(attrs) do
+    %Pokemon{}
+    |> Pokemon.changeset(attrs)
+    |> Repo.insert(on_conflict: :nothing)
   end
 
   @doc """

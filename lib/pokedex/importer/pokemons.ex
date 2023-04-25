@@ -17,11 +17,9 @@ defmodule Pokedex.Importer.Pokemons do
     end)
   end
 
-  def insert(pokemons) do
+  def upsert(pokemons) do
     for {pokedex_id, name} <- pokemons do
-      IO.puts "#{pokedex_id}: #{name}"
-
-      Pokedex.Catalog.create_pokemon(%{name: name, pokedex_id: pokedex_id})
+      Pokedex.Catalog.upsert_pokemon(%{name: name, pokedex_id: pokedex_id})
     end
   end
 end

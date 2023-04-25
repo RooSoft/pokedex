@@ -1,0 +1,1 @@
+alias Pokedex.Importer.Pokemons
