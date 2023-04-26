@@ -9,13 +9,7 @@ defmodule Pokedex.Repo.Migrations.CreatePokemons do
 
       timestamps()
     end
-  end
 
-  def up do
     execute("CREATE INDEX pokemons_names ON pokemons USING GIN(names)")
-  end
-
-  def down do
-    execute("DROP INDEX pokemons_names")
   end
 end
