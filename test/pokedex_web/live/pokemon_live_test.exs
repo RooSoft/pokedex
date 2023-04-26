@@ -26,7 +26,7 @@ defmodule PokedexWeb.PokemonLiveTest do
     test "displays pokemon", %{conn: conn, pokemon: pokemon} do
       {:ok, _show_live, html} = live(conn, ~p"/pokemons/#{pokemon}")
 
-      assert html =~ "Show Pokemon"
+      assert html =~ "#{pokemon.id}"
       assert html =~ pokemon.name
     end
   end

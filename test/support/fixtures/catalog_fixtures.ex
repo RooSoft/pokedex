@@ -12,7 +12,8 @@ defmodule Pokedex.CatalogFixtures do
       attrs
       |> Enum.into(%{
         id: 42,
-        name: "some name"
+        name: "some name",
+        names: %{}
       })
       |> Pokedex.Catalog.upsert_pokemon()
 
