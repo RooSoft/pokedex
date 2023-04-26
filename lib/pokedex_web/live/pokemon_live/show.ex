@@ -19,6 +19,14 @@ defmodule PokedexWeb.PokemonLive.Show do
   defp page_title(:show), do: "Show Pokemon"
   defp page_title(:edit), do: "Edit Pokemon"
 
+
+  defp get_name pokemon do
+    case pokemon.names do
+      %{"en" => english, "fr" => french} -> "#{english} - #{french}"
+      _ -> pokemon.name
+    end
+  end
+
   defp get_image_src(id) do
     # "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/#{id}.svg"
     # "https://img.pokemondb.net/artwork/large/bulbasaur.jpg"
