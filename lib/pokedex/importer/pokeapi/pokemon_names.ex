@@ -44,11 +44,11 @@ defmodule Pokedex.Importer.PokeAPI.PokemonNames do
     end)
   end
 
-  defp extract_names raw_names do
-      raw_names
-      |> Enum.map(fn %{"name" => name, "pokemon_v2_language" => %{"name" => language}} ->
-        {language, name}
-      end)
-      |> Enum.into(%{})
+  defp extract_names(raw_names) do
+    raw_names
+    |> Enum.map(fn %{"name" => name, "pokemon_v2_language" => %{"name" => language}} ->
+      {language, name}
+    end)
+    |> Enum.into(%{})
   end
 end

@@ -18,8 +18,8 @@ defmodule Pokedex.Importer.Pokemons do
   end
 
   def get_name_translations(id) do
-    Req.get!("https://pokeapi.co/api/v2/pokemon-species/#{id}").body["names"] 
-    |> Enum.map(fn %{"name" => name, "language" => %{"name" => language_name}} -> 
+    Req.get!("https://pokeapi.co/api/v2/pokemon-species/#{id}").body["names"]
+    |> Enum.map(fn %{"name" => name, "language" => %{"name" => language_name}} ->
       {language_name, name}
     end)
     |> Enum.into(%{})

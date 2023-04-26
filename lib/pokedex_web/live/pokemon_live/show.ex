@@ -19,8 +19,7 @@ defmodule PokedexWeb.PokemonLive.Show do
   defp page_title(:show), do: "Show Pokemon"
   defp page_title(:edit), do: "Edit Pokemon"
 
-
-  defp get_name pokemon do
+  defp get_name(pokemon) do
     case pokemon.names do
       %{"en" => english, "fr" => french} -> "#{english} - #{french}"
       _ -> pokemon.name

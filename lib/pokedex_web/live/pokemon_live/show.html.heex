@@ -1,5 +1,5 @@
 <.header>
-  <%= @pokemon.id %> - <%= get_name @pokemon %>
+  <%= @pokemon.id %> - <%= get_name(@pokemon) %>
 </.header>
 
 <.list>
@@ -10,7 +10,12 @@
 
 <.back navigate={~p"/pokemons"}>Back to pokemons</.back>
 
-<.modal :if={@live_action == :edit} id="pokemon-modal" show on_cancel={JS.patch(~p"/pokemons/#{@pokemon}")}>
+<.modal
+  :if={@live_action == :edit}
+  id="pokemon-modal"
+  show
+  on_cancel={JS.patch(~p"/pokemons/#{@pokemon}")}
+>
   <.live_component
     module={PokedexWeb.PokemonLive.FormComponent}
     id={@pokemon.id}

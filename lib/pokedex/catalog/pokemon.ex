@@ -13,6 +13,6 @@ defmodule Pokedex.Catalog.Pokemon do
   def changeset(pokemon, attrs) do
     pokemon
     |> cast(attrs, [:id, :name, :names])
-    |> validate_required([:id, :name ])
+    |> validate_required([:id, :name])
   end
 end
