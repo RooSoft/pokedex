@@ -3,5 +3,6 @@ defmodule Pokedex.Importer do
 
   def update_all do
     Pokemons.get() |> Pokemons.upsert()  
+    Pokemons.translate()
   end
 end

@@ -8,8 +8,7 @@ defmodule Pokedex.Importer.PokeAPI.PokemonNames do
               pokemon_v2_language: {
                 name: {_in: ["en", "fr"]}
               }
-            }, 
-            id: {_in: [1, 2]}
+            }
           }
         ) 
         {
@@ -50,5 +49,6 @@ defmodule Pokedex.Importer.PokeAPI.PokemonNames do
       |> Enum.map(fn %{"name" => name, "pokemon_v2_language" => %{"name" => language}} ->
         {language, name}
       end)
+      |> Enum.into(%{})
   end
 end
