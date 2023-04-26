@@ -6,12 +6,12 @@ defmodule Pokedex.Importer.Pokemons do
         "name" => name,
         "url" => url
       } ->
-        pokedex_id =
+        id =
           url
           |> String.split("/")
           |> Enum.at(-2)
 
-        {pokedex_id, name}
+        {id, name}
     end)
   end
 
@@ -24,8 +24,8 @@ defmodule Pokedex.Importer.Pokemons do
   end
 
   def upsert(pokemons) do
-    for {pokedex_id, name} <- pokemons do
-      Pokedex.Catalog.upsert_pokemon(%{name: name, pokedex_id: pokedex_id})
+    for {id, name} <- pokemons do
+      Pokedex.Catalog.upsert_pokemon(%{name: name, id: id})
     end
   end
 end

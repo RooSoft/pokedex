@@ -2,13 +2,11 @@ defmodule Pokedex.Repo.Migrations.CreatePokemons do
   use Ecto.Migration
 
   def change do
-    create table(:pokemons) do
+    create table(:pokemons, primary_key: false) do
+      add :id, :integer, primary_key: true
       add :name, :string
-      add :pokedex_id, :integer
 
       timestamps()
     end
-
-    create unique_index(:pokemons, [:pokedex_id])
   end
 end
