@@ -6,7 +6,7 @@ defmodule Pokedex.Catalog do
   import Ecto.Query, warn: false
   alias Pokedex.Repo
 
-  alias Pokedex.Catalog.Pokemon
+  alias Pokedex.Catalog.{Pokemon, Region}
 
   @doc """
   Returns the list of pokemons.
@@ -91,5 +91,14 @@ defmodule Pokedex.Catalog do
   """
   def change_pokemon(%Pokemon{} = pokemon, attrs \\ %{}) do
     Pokemon.changeset(pokemon, attrs)
+  end
+  
+  @doc """
+  Creates or updates a region.
+  """
+  def upsert_region(attrs) do
+    %Region{}
+    |> Region.changeset(attrs)
+    |> Repo.insert(on_conflict: :nothing)
   end
 end
