@@ -8,7 +8,7 @@ defmodule Pokedex.CatalogTest do
 
     import Pokedex.CatalogFixtures
 
-    @invalid_attrs %{name: nil, pokedex_id: nil}
+    @invalid_attrs %{name: nil, id: nil}
 
     test "list_pokemons/0 returns all pokemons" do
       pokemon = pokemon_fixture()
@@ -21,11 +21,11 @@ defmodule Pokedex.CatalogTest do
     end
 
     test "upsert_pokemon/1 with valid data creates a pokemon" do
-      valid_attrs = %{name: "some name", pokedex_id: 42}
+      valid_attrs = %{name: "some name", id: 42}
 
       assert {:ok, %Pokemon{} = pokemon} = Catalog.upsert_pokemon(valid_attrs)
       assert pokemon.name == "some name"
-      assert pokemon.pokedex_id == 42
+      assert pokemon.id == 42
     end
 
     test "upsert_pokemon/1 with invalid data returns error changeset" do
@@ -34,11 +34,11 @@ defmodule Pokedex.CatalogTest do
 
     test "update_pokemon/2 with valid data updates the pokemon" do
       pokemon = pokemon_fixture()
-      update_attrs = %{name: "some updated name", pokedex_id: 43}
+      update_attrs = %{name: "some updated name", id: 43}
 
       assert {:ok, %Pokemon{} = pokemon} = Catalog.update_pokemon(pokemon, update_attrs)
       assert pokemon.name == "some updated name"
-      assert pokemon.pokedex_id == 43
+      assert pokemon.id == 43
     end
 
     test "update_pokemon/2 with invalid data returns error changeset" do

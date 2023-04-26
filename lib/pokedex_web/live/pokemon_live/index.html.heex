@@ -7,7 +7,7 @@
   rows={@streams.pokemons}
   row_click={fn {_id, pokemon} -> JS.navigate(~p"/pokemons/#{pokemon}") end}
 >
-  <:col :let={{_id, pokemon}} label="ID"><%= pokemon.pokedex_id %></:col>
+  <:col :let={{_id, pokemon}} label="ID"><%= pokemon.id %></:col>
   <:col :let={{_id, pokemon}} label="Name"><%= pokemon.name %></:col>
 </.table>
 

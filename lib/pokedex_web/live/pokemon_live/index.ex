@@ -8,7 +8,7 @@ defmodule PokedexWeb.PokemonLive.Index do
   def mount(_params, _session, socket) do
     pokemons = 
       Catalog.list_pokemons()
-      |> Enum.sort(&(&1.pokedex_id < &2.pokedex_id))
+      |> Enum.sort(&(&1.id < &2.id))
 
     {:ok, stream(socket, :pokemons, pokemons)}
   end

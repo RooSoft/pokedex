@@ -1,10 +1,10 @@
 <.header>
-  <%= @pokemon.pokedex_id %> - <%= @pokemon.name %>
+  <%= @pokemon.id %> - <%= @pokemon.name %>
 </.header>
 
 <.list>
   <:item title="">
-    <img src={get_image_src(@pokemon.pokedex_id)} />
+    <img src={get_image_src(@pokemon.id)} />
   </:item>
 </.list>
 
