@@ -52,7 +52,8 @@ defmodule Pokedex.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:req, "~> 0.3"}
+      {:req, "~> 0.3"},
+      {:neuron, "~> 5.1.0"}
     ]
   end
 
