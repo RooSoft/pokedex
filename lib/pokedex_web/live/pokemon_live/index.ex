@@ -6,7 +6,7 @@ defmodule PokedexWeb.PokemonLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    pokemons = 
+    pokemons =
       Catalog.list_pokemons()
       |> Enum.sort(&(&1.id < &2.id))
 
@@ -16,6 +16,19 @@ defmodule PokedexWeb.PokemonLive.Index do
   @impl true
   def handle_params(params, _url, socket) do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
+  end
+
+  @impl true
+  def handle_info({PokedexWeb.PokemonLive.FormComponent, {:saved, pokemon}}, socket) do
+    {:noreply, stream_insert(socket, :pokemons, pokemon)}
+  end
+
+  @impl true
+  def handle_event("delete", %{"id" => id}, socket) do
+    pokemon = Catalog.get_pokemon!(id)
+    {:ok, _} = Catalog.delete_pokemon(pokemon)
+
+    {:noreply, stream_delete(socket, :pokemons, pokemon)}
   end
 
   defp apply_action(socket, :edit, %{"id" => id}) do
@@ -36,16 +49,10 @@ defmodule PokedexWeb.PokemonLive.Index do
     |> assign(:pokemon, nil)
   end
 
-  @impl true
-  def handle_info({PokedexWeb.PokemonLive.FormComponent, {:saved, pokemon}}, socket) do
-    {:noreply, stream_insert(socket, :pokemons, pokemon)}
-  end
-
-  @impl true
-  def handle_event("delete", %{"id" => id}, socket) do
-    pokemon = Catalog.get_pokemon!(id)
-    {:ok, _} = Catalog.delete_pokemon(pokemon)
-
-    {:noreply, stream_delete(socket, :pokemons, pokemon)}
+  defp get_name(pokemon) do
+    case pokemon.names do
+      %{"en" => english, "fr" => french} -> "#{english} - #{french}"
+      _ -> pokemon.name
+    end
   end
 end
