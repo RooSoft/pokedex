@@ -1,14 +1,20 @@
 import Config
 
 # Configure your database
+# config :pokedex, Pokedex.Repo,
+#   username: "roo",
+#   password: "roo",
+#   hostname: "localhost",
+#   database: "pokedex_dev",
+#   stacktrace: true,
+#   show_sensitive_data_on_connection_error: true,
+#   pool_size: 10
+
 config :pokedex, Pokedex.Repo,
-  username: "roo",
-  password: "roo",
-  hostname: "localhost",
-  database: "pokedex_dev",
+  database: "./pokedex.db",
+  pool_size: 5,
   stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  show_sensitive_data_on_connection_error: true
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
