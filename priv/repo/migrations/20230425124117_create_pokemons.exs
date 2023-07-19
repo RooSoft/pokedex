@@ -10,6 +10,6 @@ defmodule Pokedex.Repo.Migrations.CreatePokemons do
       timestamps()
     end
 
-    execute("CREATE INDEX pokemons_names ON pokemons USING GIN(names)")
+    execute("CREATE INDEX pokemons_names ON pokemons(names)")
   end
 end
