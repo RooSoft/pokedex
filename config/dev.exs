@@ -32,7 +32,6 @@ config :pokedex, PokedexWeb.Endpoint,
   secret_key_base: "VADV7ellX1bdYMCzWFYMI4rf1jX3NJmCxS9dfaM7rOpV8szpLc08FbGaRkaQTe56",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support
