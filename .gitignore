@@ -35,6 +35,7 @@ pokedex-*.tar
 npm-debug.log
 /assets/node_modules/
 
-.ignore
+# Database files
+*.db
+*.db-*
 
-pokedex.db*

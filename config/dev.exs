@@ -1,17 +1,8 @@
 import Config
 
 # Configure your database
-# config :pokedex, Pokedex.Repo,
-#   username: "roo",
-#   password: "roo",
-#   hostname: "localhost",
-#   database: "pokedex_dev",
-#   stacktrace: true,
-#   show_sensitive_data_on_connection_error: true,
-#   pool_size: 10
-
 config :pokedex, Pokedex.Repo,
-  database: "./pokedex.db",
+  database: Path.expand("../pokedex_dev.db", Path.dirname(__ENV__.file)),
   pool_size: 5,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true
@@ -20,18 +11,20 @@ config :pokedex, Pokedex.Repo,
 # debugging and code reloading.
 #
 # The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
-# with esbuild to bundle .js and .css sources.
+# watchers to your application. For example, we can use it
+# to bundle .js and .css sources.
 config :pokedex, PokedexWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {0, 0, 0, 0}, port: 4000],
+  http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "VADV7ellX1bdYMCzWFYMI4rf1jX3NJmCxS9dfaM7rOpV8szpLc08FbGaRkaQTe56",
+  secret_key_base: "xR6i4DJP5kPs5QVz1htWrvplFPx3IhYy2k3Ra5Z1rz9aaGKF1jxM0aYtd8NXTYwK",
+  reloadable_compilers: [:gettext, :phoenix, :elixir, :phoenix_sass],
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    sass: {DartSass, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -61,6 +54,7 @@ config :pokedex, PokedexWeb.Endpoint,
 config :pokedex, PokedexWeb.Endpoint,
   live_reload: [
     patterns: [
+      ~r"priv/sass/.*(sass|scss)$",
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/pokedex_web/(controllers|live|components)/.*(ex|heex)$"

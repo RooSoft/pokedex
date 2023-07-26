@@ -5,25 +5,16 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-# config :pokedex, Pokedex.Repo,
-#   username: "roo",
-#   password: "roo",
-#   hostname: "localhost",
-#   database: "pokedex_test#{System.get_env("MIX_TEST_PARTITION")}",
-#   pool: Ecto.Adapters.SQL.Sandbox,
-#   pool_size: 10
-
 config :pokedex, Pokedex.Repo,
-  database: "./pokedex.db",
+  database: Path.expand("../pokedex_test.db", Path.dirname(__ENV__.file)),
   pool_size: 5,
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true
+  pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :pokedex, PokedexWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "kp3gA8bcnO95H8spZoU13Nems2gbpkTHlxQIQRNgT0cr8pg4W9cwKF1Fjw4Wigcb",
+  secret_key_base: "7R2QuRfMMI+mWWX5jVttOcLVqEftEGn1KNbMQtZNgyqvIQKpr/QtXmnRigT6QnD4",
   server: false
 
 # In test we don't send emails.
