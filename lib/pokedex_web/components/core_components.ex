@@ -457,7 +457,7 @@ defmodule PokedexWeb.CoreComponents do
           <td
             :for={{col, _} <- Enum.with_index(@col)}
             phx-click={@row_click && @row_click.(row)}
-            class=""
+            class="item-link"
           >
             <div class="">
               <span class="" />
