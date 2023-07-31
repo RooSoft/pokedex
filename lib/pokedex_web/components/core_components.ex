@@ -396,10 +396,10 @@ defmodule PokedexWeb.CoreComponents do
   def header(assigns) do
     ~H"""
     <header class={[@actions != [] && "flex items-center justify-between gap-6", @class]}>
-      <div>
-        <h1 class="text-lg font-semibold leading-8 text-zinc-800">
+      <div class="pkm_ident-container">
+        <span class="pkm_ident">
           <%= render_slot(@inner_block) %>
-        </h1>
+        </span>
         <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-zinc-600">
           <%= render_slot(@subtitle) %>
         </p>
