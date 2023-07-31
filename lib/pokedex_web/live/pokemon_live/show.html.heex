@@ -8,7 +8,9 @@
   </:item>
 </.list>
 
-<.back navigate={~p"/pokemons"}>Back to pokemons</.back>
+<div class="pkm_nav-container">
+  <.back navigate={~p"/pokemons"}>Back to pokemons</.back>
+</div>
 
 <.modal
   :if={@live_action == :edit}

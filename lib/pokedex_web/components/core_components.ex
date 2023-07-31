@@ -523,7 +523,7 @@ defmodule PokedexWeb.CoreComponents do
 
   def back(assigns) do
     ~H"""
-    <div class="">
+    <div class="btn-back">
       <.link
         navigate={@navigate}
         class=""
