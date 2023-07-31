@@ -503,7 +503,8 @@ defmodule PokedexWeb.CoreComponents do
       <dl class="">
         <div :for={item <- @item} class="">
           <dt class=""><%= item.title %></dt>
-          <dd class=""><%= render_slot(item) %></dd>
+          <dd class=""></dd>
+          <div class="pkm_image-container"><%= render_slot(item) %></div>
         </div>
       </dl>
     </div>
