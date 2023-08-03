@@ -2,9 +2,7 @@ body {
   color: #000;
 }
 
-.item-link {
-  cursor: pointer;
-}
+@import "pointers";
 
 .pkm {
   &_image-container {
