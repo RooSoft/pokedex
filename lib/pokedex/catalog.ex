@@ -35,7 +35,7 @@ defmodule Pokedex.Catalog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_pokemon!(id), do: Repo.get!(Pokemon, id)
+  def get_pokemon!(id), do: Repo.get!(Pokemon, id) |> Repo.preload(:names)
 
   @doc """
   Updates a pokemon.
