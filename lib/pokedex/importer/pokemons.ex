@@ -32,9 +32,12 @@ defmodule Pokedex.Importer.Pokemons do
   end
 
   def translate do
-    for {id, names} <- PokemonNames.get_all() do
-      Pokedex.Catalog.get_pokemon!(id)
-      |> Pokedex.Catalog.update_pokemon(%{names: names})
+    pokemon_names = PokemonNames.get_all
+
+    for {id, %{"en" => en, "fr" => fr, "ja" => jp}} <- pokemon_names do
+      Pokedex.Catalog.upsert_pokemon_name(%{pokemon_id: id, language: "en", name: en})
+      Pokedex.Catalog.upsert_pokemon_name(%{pokemon_id: id, language: "fr", name: fr})
+      Pokedex.Catalog.upsert_pokemon_name(%{pokemon_id: id, language: "jp", name: jp})
     end
   end
 end

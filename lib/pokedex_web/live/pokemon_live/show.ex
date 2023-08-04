@@ -2,6 +2,7 @@ defmodule PokedexWeb.PokemonLive.Show do
   use PokedexWeb, :live_view
 
   alias Pokedex.Catalog
+  alias Pokedex.Catalog.PokemonName
 
   @impl true
   def mount(_params, _session, socket) do
@@ -20,9 +21,17 @@ defmodule PokedexWeb.PokemonLive.Show do
   defp page_title(:edit), do: "Edit Pokemon"
 
   defp get_name(pokemon) do
-    case pokemon.names do
-      %{"en" => english, "fr" => french} -> "#{english} - #{french}"
-      _ -> pokemon.name
+    names =
+      Enum.map(pokemon.names, fn %PokemonName{language: language, name: name} ->
+        {language, name}
+      end)
+
+    case names do
+      [{"en", en}, {"fr", fr}, {"jp", jp}] ->
+        "#{en} - #{fr} - #{jp}"
+
+      _ ->
+        " #{pokemon.name}"
     end
   end
 

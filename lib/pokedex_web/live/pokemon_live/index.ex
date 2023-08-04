@@ -6,11 +6,13 @@ defmodule PokedexWeb.PokemonLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    pokemons =
-      Catalog.list_pokemons()
-      |> Enum.sort(&(&1.id < &2.id))
+    pokemons = get_pokemons()
 
-    {:ok, stream(socket, :pokemons, pokemons)}
+    {
+      :ok,
+      socket
+      |> assign(:pokemons, pokemons)
+    }
   end
 
   @impl true
@@ -33,9 +35,13 @@ defmodule PokedexWeb.PokemonLive.Index do
 
   @impl true
   def handle_event("name_changed", %{"pokemnon_name" => name}, socket) do
-    IO.puts name
+    pokemons = get_pokemons(name)
 
-    {:noreply, socket}
+    {
+      :noreply,
+      socket
+      |> assign(:pokemons, pokemons)
+    }
   end
 
   defp apply_action(socket, :edit, %{"id" => id}) do
@@ -61,5 +67,14 @@ defmodule PokedexWeb.PokemonLive.Index do
       %{"en" => english, "fr" => french} -> "#{english} - #{french}"
       _ -> pokemon.name
     end
+  end
+
+  defp get_pokemons() do
+    get_pokemons("")
+  end
+
+  defp get_pokemons(name) do
+    Catalog.list_pokemons(name)
+    |> Enum.sort(&(&1.id < &2.id))
   end
 end

@@ -6,7 +6,7 @@ defmodule Pokedex.Catalog do
   import Ecto.Query, warn: false
   alias Pokedex.Repo
 
-  alias Pokedex.Catalog.{Pokemon, Region}
+  alias Pokedex.Catalog.{Pokemon, PokemonName, Region}
 
   @doc """
   Returns the list of pokemons.
@@ -19,6 +19,16 @@ defmodule Pokedex.Catalog do
   """
   def list_pokemons do
     Repo.all(Pokemon)
+  end
+
+  def list_pokemons(name) do
+    search_term = "%#{name}%"
+
+    query =
+      from p in Pokemon,
+        where: like(p.name, ^search_term)
+
+    Repo.all(query)
   end
 
   @doc """
@@ -35,7 +45,7 @@ defmodule Pokedex.Catalog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_pokemon!(id), do: Repo.get!(Pokemon, id)
+  def get_pokemon!(id), do: Repo.get!(Pokemon, id) |> Repo.preload(:names)
 
   @doc """
   Updates a pokemon.
@@ -92,13 +102,22 @@ defmodule Pokedex.Catalog do
   def change_pokemon(%Pokemon{} = pokemon, attrs \\ %{}) do
     Pokemon.changeset(pokemon, attrs)
   end
-  
+
   @doc """
   Creates or updates a region.
   """
   def upsert_region(attrs) do
     %Region{}
     |> Region.changeset(attrs)
+    |> Repo.insert(on_conflict: :nothing)
+  end
+
+  @doc """
+  Creates or updates a pokemon_name.
+  """
+  def upsert_pokemon_name(attrs) do
+    %PokemonName{}
+    |> PokemonName.changeset(attrs)
     |> Repo.insert(on_conflict: :nothing)
   end
 end
