@@ -4,7 +4,8 @@ defmodule Pokedex.Catalog.Pokemon do
 
   schema "pokemons" do
     field :name, :string
-    field :names, :map
+
+    has_many :names, Pokedex.Catalog.PokemonName
 
     timestamps()
   end
@@ -12,7 +13,7 @@ defmodule Pokedex.Catalog.Pokemon do
   @doc false
   def changeset(pokemon, attrs) do
     pokemon
-    |> cast(attrs, [:id, :name, :names])
+    |> cast(attrs, [:id, :name])
     |> validate_required([:id, :name])
   end
 end
