@@ -445,7 +445,6 @@ defmodule PokedexWeb.CoreComponents do
       <thead class="">
         <tr>
           <th :for={col <- @col} class=""><%= col[:label] %></th>
-          <th class=""><span class=""><%= gettext("Actions") %></span></th>
         </tr>
       </thead>
       <tbody
