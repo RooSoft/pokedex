@@ -3,6 +3,7 @@ import Config
 # Configure your database
 config :pokedex, Pokedex.Repo,
   database: Path.expand("../pokedex_dev.db", Path.dirname(__ENV__.file)),
+  case_sensitive_like: :off,
   pool_size: 5,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true

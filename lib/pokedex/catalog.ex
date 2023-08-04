@@ -21,6 +21,16 @@ defmodule Pokedex.Catalog do
     Repo.all(Pokemon)
   end
 
+  def list_pokemons(name) do
+    search_term = "%#{name}%"
+
+    query =
+      from p in Pokemon,
+        where: like(p.name, ^search_term)
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single pokemon.
 
@@ -92,7 +102,7 @@ defmodule Pokedex.Catalog do
   def change_pokemon(%Pokemon{} = pokemon, attrs \\ %{}) do
     Pokemon.changeset(pokemon, attrs)
   end
-  
+
   @doc """
   Creates or updates a region.
   """
