@@ -31,6 +31,13 @@ defmodule PokedexWeb.PokemonLive.Index do
     {:noreply, stream_delete(socket, :pokemons, pokemon)}
   end
 
+  @impl true
+  def handle_event("name_changed", %{"pokemnon_name" => name}, socket) do
+    IO.puts name
+
+    {:noreply, socket}
+  end
+
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Pokemon")

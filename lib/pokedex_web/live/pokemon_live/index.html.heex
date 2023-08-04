@@ -2,6 +2,11 @@
   Pokemons
 </.header>
 
+
+<.form phx-change="name_changed">
+  <.input type="text" name="pokemnon_name" value=""></.input>
+</.form>
+
 <.table
   id="pokemons"
   rows={@streams.pokemons}
