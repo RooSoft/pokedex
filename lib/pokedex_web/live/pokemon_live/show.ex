@@ -27,8 +27,8 @@ defmodule PokedexWeb.PokemonLive.Show do
       end)
 
     case names do
-      [{"en", english}, {"fr", french}] ->
-        "#{english} - #{french}"
+      [{"en", en}, {"fr", fr}, {"jp", jp}] ->
+        "#{en} - #{fr} - #{jp}"
 
       _ ->
         " #{pokemon.name}"
