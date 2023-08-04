@@ -9,6 +9,8 @@ defmodule Pokedex.Repo.Migrations.CreatePokemonNames do
 
       timestamps()
     end
+
+    create unique_index(:pokemon_names, [:pokemon_id, :language])
   end
 end
 

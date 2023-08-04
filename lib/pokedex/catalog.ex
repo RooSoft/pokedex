@@ -110,5 +110,4 @@ defmodule Pokedex.Catalog do
     |> PokemonName.changeset(attrs)
     |> Repo.insert(on_conflict: :nothing)
   end
-
 end
