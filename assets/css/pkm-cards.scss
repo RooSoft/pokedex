@@ -1,0 +1,25 @@
+
+.pkm {
+    &_image-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    &_ident {
+      font-family: Helvetica, Sans-Serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+  
+      &-container {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  
+    &_nav-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
