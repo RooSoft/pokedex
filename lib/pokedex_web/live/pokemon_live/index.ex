@@ -34,7 +34,7 @@ defmodule PokedexWeb.PokemonLive.Index do
   end
 
   @impl true
-  def handle_event("name_changed", %{"pokemnon_name" => name}, socket) do
+  def handle_event("name_changed", %{"pokemon_name" => name}, socket) do
     pokemons = get_pokemons(name)
 
     {
